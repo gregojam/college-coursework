@@ -1,0 +1,19 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=1E:44:5F:23:96:37:DA:5C:A4:C1:CC:4E:C8:B5:0B:48:2B:AF:FE:A0%3Bcom.example.curlyburns.mysteptracker
+
+    You can also add your credentials to an existing key, using this line:
+    1E:44:5F:23:96:37:DA:5C:A4:C1:CC:4E:C8:B5:0B:48:2B:AF:FE:A0;com.example.curlyburns.mysteptracker
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAlCBKHoZ_y88oECsw-P_HRN0Gq2W2icK4</string>
+</resources>

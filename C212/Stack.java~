@@ -1,0 +1,122 @@
+//////////////////////////////
+//
+//C212 Spring 2016
+//HW3
+//
+//Author: James Gregory
+//Last Modified: 2/12/16
+//
+//////////////////////////////
+
+public class Stack{
+  private Object[] stack;
+  private int size; // number of items in stack
+  private int N; // index of last item in stack
+  
+  // Constructor
+  public Stack(){
+    stack = new Object[2];
+    size = 0;
+    N = 0;
+  }
+  
+  // determines whether Stack is empty
+  public boolean isEmpty(){
+    for(Object item : stack){
+      if(item == null);// Keep Going
+      else
+        return false;
+    }
+    return true;
+  }
+  
+  // get size
+  public int size(){
+    return size;
+  }
+  
+  // inserts an item into Stack
+  public void push(Object obj){
+    resize();
+    if(stack[0] == null)
+      stack[0] = obj;
+    else
+      stack[++N] = obj;
+    size++;
+  }
+  
+  // removes an item from Stack
+  public Object pop(){
+    if(stack[0] != null){
+      Object item = stack[N];
+      stack[N] = null;
+      size--;
+      N--;
+      resize();
+      return item;
+    }
+    else
+      return null;
+  }
+  
+  // appropriately sizes Stack
+  private void resize(){
+    if(size == stack.length){
+      Object[] temp = stack;
+      stack = new Object[size * 2];
+      size = 0;
+      N = 0;
+      for(int i = 0; i < temp.length; i++){
+        stack[i] = temp[i];
+        size++;
+        N = size - 1;
+      }
+    }
+    else if(stack.length > 2 && size * 4 <= stack.length){
+      Object[] temp = new Object[size * 2];
+      size = 0;
+      N = 0;
+      for(int i = 0; stack[i] != null; i++){
+        temp[i] = stack[i];
+        size++;
+        N = size -1;
+      }
+      stack = temp;
+    }
+    else; // Do Nothing
+    if(N < 0)
+      N = 0;
+    else; // Do Nothing
+  }
+  
+  // Returns the array as a string
+  public String toString(){
+    String s = "(";
+    for(int i = 0; i < stack.length; i++){
+      s += stack[i];
+      if(i != stack.length - 1)
+        s += ", ";
+      else; // Do Nothing
+    }
+    return s + ")";
+  }
+  
+  public static void main(String[] args){
+    Stack s = new Stack();
+    for(int i = 0; i < 5; i++)
+      s.push((int) i);
+    System.out.println("\nTest Block" + "\n====================" +
+                       "\nT1 " + 
+                       s.toString().equals("(0, 1, 2, 3, 4, null, null, null)"));
+    for(int i = 0; i < 3; i++)
+      s.pop();
+    System.out.println("T2 " + s.toString().equals("(0, 1, null, null)"));
+    for(int i = 0; i < 10; i++)
+      s.pop();
+    System.out.println("T3 " + s.toString().equals("(null, null)") +
+                       "\nT4 " + (s.size == 0 && s.N == 0) +
+                       "\n====================\n");
+    
+    
+  }
+}

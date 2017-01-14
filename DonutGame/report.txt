@@ -1,0 +1,42 @@
+James Gregory
+
+Tasks:
+    No individual tasks.
+
+    -Quick brainstorming of story and general level goals
+    -Define level structure
+    -Create different map objects (player, keys, doors, etc.)
+    -Player movement and collision detection
+    -Dynamic portal storage and linking
+    -Teleportation via portals
+    -Door/key interaction
+    -Level design
+    -Level reset implementation
+    -Add Story
+    -Add level labels
+
+Challenges:
+    Our first big challenge came with attempting to pass multidimensional
+    arrays between separate c files. We were able to get arrays of strings
+    to work, but arrays of arrays of ints would return various errors. This
+    made portal creation and linking difficult. We wound up storing all
+    portals x and y positions in a single dimensional array, with related
+    portals stored in four consecutive positions of the array {x1, y1, x2, y2}.
+    
+    We also ran into memory issues by initially storing all levels from level.c
+    in a levelInfo array, which saved lines of code, but used a lot of memory.
+    We rewrote our functions to assign a single variable, when the level was
+    loaded, from the level.c file based on which level the player was currently
+    on. This decreased our total-level-memory from n*2 to n+1.
+
+If We Could Start Over:
+    We would probably just not try to use multidimensional arrays as much.
+    That used up a lot of time we could have spent elsewhere.
+
+If We Had More Time:
+    We would have like to save the levels on the SD card, and read each one
+    from there. Doing so would allow for a lot more levels, and even "expansion
+    packs" for the full-release version we're going to make millions off of.
+
+    We also would have spent more time developing the story of the game, and
+    would have made a few levels better.

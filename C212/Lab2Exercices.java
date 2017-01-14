@@ -1,0 +1,133 @@
+////////////////////////////////////////////////////////////////////////////////////
+//
+//  C212 Spring 16
+//  Lab 2 
+//  
+//  Released:  1/20/16
+//  Due:       1/25/15 11:59 PM
+//
+//  @Author  James Gregory gregojam
+//  Last Edited:  1/24/2016
+//
+//
+//  Directions:  Implement the following methods 
+//               
+//               
+//////////////////////////////////////////////////////////////////////////////////
+
+// Note:  Do not need to explicitly import classes from java.lang but wanted to make it explicit 
+// Goal - understand using Static classes - i.e. the Math class was not designed to be Instantiated (make objects) 
+// It is a class that provides functionality and will be used to complete one of the methods
+import java.lang.Math;
+
+public class Lab2Exercices {
+    
+    // computes area of a circle when given a radius
+    public static double areaOfCircle(int radius) {
+        // TO-DO
+        // delcare the appropriate variables to calulate area of circle if given a radius 
+        // Can access the public constant field in Math class by calling the class name, dot operator, and Field name
+        // e.g. Math.PI
+        
+        return (double) radius * radius * Math.PI; // added return statement inittialy so program compiles, 
+                           // but will need to change all the return statements
+    }
+    
+    // computes circumference of a circle
+    public static double circumference(int radius) {
+        // TO-DO 
+        // declare appropriate variables to calculate circumference 
+        
+        return (double) 2 * radius * Math.PI;
+    }
+    
+    // returns a String value of the rectangles area, peremiter, and the diagnal of the rectangle 
+    // (use Pythagorean Theorem)
+    public static String rectangle(int len, int width) {
+        //   TO-DO
+        return "Area = " + (len * width) + "; Perimeter = " + (2 * ( len + width)) + 
+               "; Diagonal = " + Math.sqrt(len * len + width * width);
+    }
+    
+    // reads a number between 1,000 and 999,999 and prints it with a comma separating the thousands
+    // hint use modulus to save part of the number, then concatenate back to gether as a String
+    public static String addCommas(int num) {
+        // TO-DO        
+        return (num / 1000) + "," + (num / 100 % 10) + (num / 10 % 10) + (num % 10);
+    }
+    
+    // given angle in Degrees, convert to radians (hint look at Math class Java doc API)
+    // and return a string of the Sin, Cos, and Tangent of the angle  
+    public static String trigFunctions(double angle) {
+        double rads = angle * Math.PI / 180;
+        
+        return "Sin = " + Math.sin(rads) + "; Cos = " + Math.cos(rads) + "; Tan = " + Math.tan(rads);
+    }
+    
+    // change the expressions to compound operators
+    public static void compundExercises() {
+        int result = 0;
+        
+        // Example
+        // result = result + 3; // result is now 3
+        result += 3; // commented out previous expression and changed to compound operator
+        System.out.println(result);
+
+        //result = result - 1; // result is now 2
+        result--;
+        System.out.println(result);
+
+        //result = result * 2; // result is now 4
+        result *= 2;
+        System.out.println(result);
+
+        //result = result / 2; // result is now 2
+        result /= 2;
+        System.out.println(result);
+
+        //result = result + 8; // result is now 10        
+        //result = result % 7; // result is now 3
+        result = (result + 8) % 7;
+        System.out.println(result);
+    }
+    
+    // test client 
+    public static void main(String[] args) {
+        // add test casses of your methods 
+      System.out.println("\n\nTEST BLOCK" + "\n**********" +
+                         "\nT1 " + (areaOfCircle(3) == 9 * Math.PI) +
+                         "\nT2 " + (circumference(3) == 6 * Math.PI) +
+                         "\nT3 " + (rectangle(3, 4).equals("Area = 12; Perimeter = 14; Diagonal = 5.0")) +
+                         "\nT4 " + (addCommas(999999).equals("999,999")) +
+                         "\nT5 " + (addCommas(1000).equals("1,000")) +
+                         "\nT6 " + (trigFunctions(180).equals("Sin = 1.2246467991473532E-16; " + 
+                                                              "Cos = -1.0; Tan = -1.2246467991473532E-16")));
+      compundExercises();
+      System.out.println("**********\n\n");
+    }
+}
+
+///////////////////////////////////
+//                               //
+// ANSER THE FOLLOWING QUESTIONS //
+//                               //
+///////////////////////////////////
+
+/*
+ * Questions 1-3 are on explicit and implicit casting of some numerical types  
+ *
+ * 1.  What is the type when you multipy a double and an int?  double
+ * 
+ * 2.  What happens if a method has a paramater of type double, but you pass it an int?  argument converted to double
+ * 
+ * 3.  What happens if a mehtod has a paramater of type int, but you pass it a double? error
+ * 
+ * 4.  What are the 8 primitive data types in the Java language? byte, short, int, long, float, double, char, boolean 
+ * 
+ * 5.  Consider the following code snippet.
+ *     int i = 10;
+ *     int n = i++%5;
+ * 
+ *     What are the values of i and n after the code is executed? (i == 11) and (n == 0)
+ *     What are the final values of i and n if instead of using the postfix increment operator (i++), you use the prefix version (++i))? (i == 11) and (n== 1)
+ */

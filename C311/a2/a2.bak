@@ -1,0 +1,24 @@
+#lang racket
+
+;; list-ref -> [Listof X] Natural -> X
+;; returns the nth element of a list
+(define list-ref
+  (λ (ls n)
+    (letrec
+        ((nth-cdr
+          (λ (n)
+            (cond
+              [(zero? n) ls]
+              [else (cdr (nth-cdr (sub1 n)))]))))
+      (car (nth-cdr n)))))
+
+(define union
+  (λ (ls1 ls2)
+    (letrec
+        ((dupe-check
+          (λ (ls2)
+            (cond
+              [(null? ls2) '()]
+              [(member (car ls2) ls1) (dupe-check (cdr ls2))]
+              [else (cons (car ls2) (dupe-check (cdr ls2)))]))))
+      (append ls1 (dupe-check ls2)))))

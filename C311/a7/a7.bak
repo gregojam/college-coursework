@@ -1,0 +1,37 @@
+#lang racket
+
+(define last-non-zero
+  (lambda (ls)
+    (let/cc k
+      (letrec
+          ((last-non-zero
+            (lambda (ls)
+              (cond
+                [(null? ls) ls]
+                [(eqv? (car ls) 0) (k (last-non-zero (cdr ls)))]
+                [else (cons (car ls) (last-non-zero (cdr ls)))]
+                ))))
+        (last-non-zero ls)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define lex
+  (λ (lce ls)
+    (match lce
+      [`,y #:when (symbol? y)
+           (if (memv y ls)
+               `(var ,(length (takef ls (λ (e) (not (eqv? e y))))))
+               '())]
+      [`,y #:when (number? y) `(const ,y)]
+      [`(zero? ,x) `(zero ,(lex x ls))]
+      [`(sub1 ,x) `(sub1 ,(lex x ls))]
+      [`(* ,x ,y) `(mult ,(lex x ls) ,(lex y ls))]
+      [`(if ,test ,then ,alt) `(if ,(lex test ls)
+                                   ,(lex then ls)
+                                   ,(lex alt ls))]
+      [`(let ((,x ,exp)) ,body) `(let ,(lex exp (cons x ls))
+                                   ,(lex body (cons x ls)))]
+      ['(let/cc ,x ,body) '(let/cc k '(lex ,body (cons x ls)))]
+      ['(throw ,k-exp ,v-exp) '(app ,(lex k-exp ls) ,(lex v-exp ls))]
+      [`(lambda (,x) ,body) `(lambda ,(lex body (cons x ls)))]
+      [`(,rator ,rand) `(app ,(lex rator ls) ,(lex rand ls))])))

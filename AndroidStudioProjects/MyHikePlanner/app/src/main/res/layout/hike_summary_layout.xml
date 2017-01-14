@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="#ffffff" >
+
+    <TextView
+        android:text="Within 10m of:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/currentLocation" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/currentLocation"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/currentVisit" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/currentVisit"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/visitedLbl"
+        android:layout_marginTop="26dp">
+
+        <TextView
+            android:text="Have Visited:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:gravity="center_horizontal"
+            android:paddingRight="5dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="Have Not Visited:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:gravity="center_horizontal"
+            android:paddingLeft="5dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/visitedLbl"
+        android:layout_centerHorizontal="true">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="5dp"
+            android:id="@+id/haveVisit"
+            android:layout_weight="1" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:id="@+id/needVisit"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</RelativeLayout>

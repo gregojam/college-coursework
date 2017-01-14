@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20140826-r5761">
+  <project autorefresh="false" main="Barbell" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="Barbell.java" package="" timestamp="05-Feb-2016 22:33:14">
+        <select from="2864" to="2864"/>
+        <scroll column="1248" row="0"/>
+      </file>
+      <file name="Plate.java" package="" timestamp="29-Apr-2015 21:26:05">
+        <select from="2864" to="2864"/>
+        <scroll column="1248" row="0"/>
+      </file>
+      <file name="Bar.java" package="" timestamp="05-Feb-2016 22:18:16">
+        <select from="2864" to="2864"/>
+        <scroll column="1248" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath/>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

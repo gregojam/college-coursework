@@ -1,0 +1,68 @@
+<html>
+<head>
+<script>
+    var popup = null;
+
+    function popupWin(url, name, w, h){
+        if(popup == null || popup.closed){
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = (width/2)-(w/2);
+            var topp = (height/2)-(h/2);
+            popup =  window.open(url, name, 'width='+w+', height='+h+', top='+topp+', left='+left);
+        return false;
+        }
+        else{
+            popup.focus();
+            return false;
+        }
+}
+</script>
+
+<style>
+    :root{
+	--myTint:hsla(0, 0%, 0%, 0.45);
+    }
+
+    body{
+        background: url("DLBackground.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    mark{
+	background-color: var(--myTint);
+	color: white;
+    }
+
+    iframe#game{
+	background: var(--myTint);
+	width: 400px;
+	height: 350px;
+    }
+</style>
+
+</head>
+
+<body link="aqua" vlink="gold">
+	<h1>My name is James.</h1>
+	<h3>I enjoy powerlifting.</h3>
+        <a href="KK/KK.html" onclick="return popupWin('KK/KK.html', 'KK_vid', 335, 320)"><img src="KK/IMG_0110.jpg"></img></a>
+	<p>
+        <mark>
+	    Play <a href="Battleship/battleship.html">Battleship</a>!<br>
+            Play <a href="Battleship/battleship2.html">Blind Battleship</a>!
+	</mark>
+	</p>
+
+	<iframe src="DarkBlue/game.html" scrolling="no" id="game"></iframe>
+
+        <p>
+	<mark>
+	    <a href="protected">Protected Thing (password required)</a>
+	</mark>	
+	</p>
+</body>
+</html>

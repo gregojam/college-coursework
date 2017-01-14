@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_activity_layout" >
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        tools:context="com.example.curlyburns.mysteptracker.MapsActivity" />
+
+    <TextView
+        android:text="Double tap here to start step counter."
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/instr"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom|center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/instr"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="90dp"
+        android:id="@+id/tracking"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tracking"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/counting"
+        android:layout_marginRight="90dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:id="@+id/steps" />
+
+</RelativeLayout>
+

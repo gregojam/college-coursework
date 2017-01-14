@@ -1,0 +1,16 @@
+public class Stack{
+  private Object[] stack;
+  private int size; // number of items in stack
+  private int N; // index of last item in stack
+  
+  // Constructor
+  public Stack(){
+    stack = new Object[]
+    size, N = 0;
+  }
+  
+  public boolean isEmpty(){
+    for item in stack{
+      1}
+  }
+}

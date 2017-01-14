@@ -1,0 +1,12 @@
+import java.util.Random;
+
+public class Die{
+  
+  private Random rand;
+  
+  // Constructor
+ // public Die(){
+   // this.rand = Random();
+  }//}
+  
+  //

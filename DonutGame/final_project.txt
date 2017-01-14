@@ -1,0 +1,49 @@
+James Gregory
+Brent Hall
+
+Game Title:
+	DonutGame
+
+Game Description:
+	DonutGame is a puzzle/adventure game that features 12 levels and a story.
+	Each level consists of a donut and at least one of: the hero, keys, doors,
+	walls, and portals. The goal of each level is to reach the donut.
+
+Core Functionality:
+	DonutGame utilizes a nunchuk for player movement (and one surprise), the
+	gyro for another puzzle, the sd card for end-level sound and an end-game
+	image, the lcd screen to display the game, and various wires to make the
+	board peripherals work.
+
+	Levels are stored as a levelInfo struct, which contains an int numPortals,
+	an int[2] playerStart, and a map. Maps are stored as an array of strings.
+	This method is memory intensive, but minimizes calculations, and make
+	collision detection trivial.
+
+	Portals are stored in a dynamic array with each portal pairing being stored
+	as four consecutive integers {x1, y1, x2, y2}. The array is allocated each
+	time a new level is loaded, and is allocated based on the level's numPortals.
+	Each portal pair is represented by matching characters (starting with '0'),
+	and are stored in a portals[4*numPortals] array at the position of the
+	representing character-48 ('0' corresponds to 0, '1' to 1, etc.).
+
+	A level number and title, some of which are hints to solving the level, is
+	displayed before each level. The story is told before the first level and
+	after the last level.
+
+Tasks:
+	We rarely worked on this project alone, and what when we did, it wasn't for
+	a preassigned task.
+
+	Tasks:
+		-Quick brainstorming of story and general level goals
+		-Define level structure
+		-Create different map objects (player, keys, doors, etc.)
+		-Player movement and collision detection
+		-Dynamic portal storage and linking
+		-Teleportation via portals
+		-Door/key interaction
+		-Level design
+		-Level reset implementation
+		-Add Story
+		-Add level labels

@@ -1,0 +1,45 @@
+#lang racket
+
+(define empty-env
+  (λ ()
+    (lambda (y) (error 'value-of "unbound variable ~s" y))))
+
+(define extend-env
+  (λ (x arg env)
+    (λ (y)
+      (if (eqv? y x)
+          arg
+          (env y)))))
+
+(define apply-env
+  (λ (env y)
+    (env y)))
+
+(define make-closure-cbv
+  (λ  (x body env)
+    (λ (arg)
+      (value-of-cbv body (extend-env x arg env)))))
+
+(define apply-closure
+  (λ (rator rand)
+    (rator (box rand))))
+
+(define value-of-cbv
+  (lambda (exp env)
+    (match exp
+      [`,y #:when (symbol? y) (unbox (apply-env env y))]
+      [`,b #:when (boolean? b) b]
+      [`,n #:when (number? n)  n]
+      [`(zero? ,n) (zero? (value-of-cbv n env))]
+      [`(sub1 ,n) (sub1 (value-of-cbv n env))]
+      [`(* ,n1 ,n2) (* (value-of-cbv n1 env) (value-of-cbv n2 env))]
+      [`(if ,test ,conseq ,alt) (if (value-of-cbv test env)
+                                    (value-of-cbv conseq env)
+                                    (value-of-cbv alt env))]
+      [`(begin2 ,e1 ,e2) (begin (value-of-cbv e1 env) (value-of-cbv e2 env))]
+      [`(random ,n) (random (value-of-cbv n env))]
+      [`(lambda (,x) ,body) (make-closure-cbv x body env)]
+      [`(,rator ,rand) #:when (symbol? rand)
+                       (apply-closure (val-of-cbv rator env) (unbox (apply env rand)))]
+      [`(,rator ,rand) (apply-closure (value-of-cbv rator env)
+                                      (value-of-cbv rand env))])))

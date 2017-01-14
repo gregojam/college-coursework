@@ -1,0 +1,16 @@
+#lang racket
+
+(define value-of
+  (λ (exp env)
+    (match exp
+      [`,y #:when (symbol? y)  (env y)]
+      [`,y #:when (number? y)  y]
+      [`,y #:when (boolean? y) y]
+      [`(zero? ,test) (zero? (value-of test env))]
+      [`(if ,test ,then ,alt) (if (value-of test env)
+                                  (value-of then env)
+                                  (value-of alt env))]
+      [`(lambda (,x) ,body) (λ (arg) (value-of body (λ (y) (if (eqv? y x)
+                                                           arg
+                                                           (env y)))))]
+      [`(,rator ,rand) ((value-of rator env) (value-of rand env))])))
