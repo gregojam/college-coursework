@@ -1,5 +1,17 @@
-B403 structure
+#B403 structure
 
+###GOAL:
+
+Design my own dynamic data structure that will store 0-1Million integers
+in the range [0-1Million].
+The structure must be able to add an element, delete an element, tell
+whether or not it contains a given integer, return the number of elements
+it currently holds, and determine whether or not any two elements it holds
+have a sum equal to a given integer.
+The structure should emphasize efficiency both in terms of running time
+and memory usage.
+
+###Usage:
 
 Compile myStructure.c as follows:
 
