@@ -1,7 +1,7 @@
 # college-coursework
 Work I've done for various college courses.
 
-Each folder represents single course:  
+#### Each folder represents single course:  
   AndroidStudioProjects == IU, CSCI-A290 Android App Dev I  
   Barbell == IUPUI, CSCI 240000 Computing II  
   C212 == IU, CSCI-C212 Intro to Software Systems  
