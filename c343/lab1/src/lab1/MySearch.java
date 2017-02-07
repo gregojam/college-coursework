@@ -21,23 +21,32 @@ public class MySearch {
 		int[] a, b;
 		int res;
 		
+		a = new int[0];
+		b = new int[0];
+		res = search(a, b);
+		if(res != -1)
+			System.out.println("Test 0 failed: res = " + res);
+		
 		a = new int[] {1, 2, 3};
 		b = new int[] {5};
 		res = search(a, b);
 		if(res != -1)
 			System.out.println("Test 1 failed: res = " + res);
-		
-		a = new int[] {1, 2, 3};
+
 		b = new int[] {5, 6, 3, 2, 1, 2, 3, 7, 8, 0};
 		res = search(a, b);
 		if(res != 4)
 			System.out.println("Test 2 failed: res = " + res);
 		
-		a = new int[] {1, 2, 3};
 		b = new int[] {5, 6, 3, 1, 2, 3, 1, 2, 3};
 		res = search(a, b);
 		if(res != 3)
-			System.out.println("Test 1 failed: res = " + res);
+			System.out.println("Test 3 failed: res = " + res);
+		
+		b = new int[0];
+		res = search(a, b);
+		if(res != -1)
+			System.out.println("Test 4 failed: res = " + res);
 		
 		System.out.println("Tests completed");
 
