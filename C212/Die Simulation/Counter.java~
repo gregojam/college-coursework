@@ -1,0 +1,50 @@
+//////////////////////////////
+//
+//C212 Spring 2016
+//Homework2
+//
+//Author: James Greogry
+//Last Modified: 2/4/16
+//
+//////////////////////////////
+
+import java.util.Scanner;
+
+public class Counter{
+  
+  private final String name;
+  private int count;
+  
+  // Constructor
+  public Counter(String id){
+    this.name = id;
+    this.count = 0;
+  }
+  
+  // increments count
+  public void increment(){
+    this.count++;
+  }
+  
+  // returns count
+  public int tally(){
+    return this.count;
+  }
+  
+  // prints name and count
+  public String toString(){
+    return this.name + " " + this.count;
+  }
+  
+  public static void main(String[] args){
+    Counter c = new Counter("Steve");
+    System.out.println("\nTest Block" + "\n====================" +
+                       "\nT1 " + (c.name == "Steve") +
+                       "\nT2 " + (c.tally() == 0) +
+                       "\nT3 " + ((c.toString()).equals("Steve 0")));
+    c.increment();
+    System.out.println("T4 " + (c.tally() == 1) +
+                       "\nT5 " + ((c.toString()).equals("Steve 1")) +
+                       "\n====================\n");
+  }
+}

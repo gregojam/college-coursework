@@ -1,0 +1,167 @@
+////////////////////////////////////////////////////////////////////////////////////
+//
+//  C212 Spring 16
+//
+//  Homework 6 Template
+//  Due: Friday 3/11 11:59 pm
+//  @Author  Earl Dean
+//
+// Modified By: James Gregory
+// Last Modified: 3/23/16
+//
+///////////////////////////////////////////////////////////////////////////////////
+ 
+// These are the imports I used 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/*
+ * Driver program for randam shape generator app
+ */
+public class ShapeDriver extends JPanel
+  implements KeyListener, ActionListener{
+
+    // Panel constants
+    public final int FRAME_WIDTH = 600;
+    public final int FRAME_HEIGHT = 600;
+
+    private Random random;
+    private ArrayList<Circle> daShapes;
+    private Timer timer;
+
+    public ShapeDriver() {
+        super(); 
+        
+        JLabel instructions = new JLabel("(C)ircle");
+        instructions.setFont(new Font("Verdana", 1, 20));
+        instructions.setHorizontalAlignment(SwingConstants.CENTER);
+                             
+        random = new Random();
+        daShapes = new ArrayList<Circle>();
+        
+        addKeyListener(this);
+        setFocusable(true);
+        setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        setBackground(Color.gray);
+        setLayout(new BorderLayout());
+        add(instructions);
+        
+        timer = new Timer(1000/60, this);
+        timer.start();
+    }
+    
+    private void drawInstructions(Graphics g){
+      g.drawString("(C)ircle, (R)ectangle, (S)quare",
+                  100, 100);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        
+      for(Circle shape : daShapes){
+        shape.draw(g);
+      }
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+      Color bColor;
+      Color fColor;
+      
+      switch (e.getKeyCode()){
+        case KeyEvent.VK_C:
+          bColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
+          fColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
+          
+          int radius = random.nextInt(50);
+          int x = random.nextInt(FRAME_WIDTH - 1 - 2 * radius) + 1 + radius;
+          int y = random.nextInt(FRAME_HEIGHT - 1 - 2 * radius) + 1 + radius;
+          Circle c = new Circle(fColor, bColor, x, y, radius);
+          daShapes.add(c);
+          repaint();
+          break;
+//        case KeyEvent.VK_R:
+//          bColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
+//          fColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
+//          
+//          Rectangle r = new Rectangle(fColor, bColor,
+//                                      random.nextInt(FRAME_WIDTH),
+//                                      random.nextInt(FRAME_HEIGHT),
+//                                      random.nextInt(100),
+//                                      random.nextInt(100));
+//          daShapes.add(r);
+//          repaint();
+//          break;
+//        case KeyEvent.VK_S:
+//          bColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
+//          fColor = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
+//          
+//          Square s = new Square(fColor, bColor,
+//                                random.nextInt(FRAME_WIDTH),
+//                                random.nextInt(FRAME_HEIGHT),
+//                                random.nextInt(100));
+//          
+//          daShapes.add(s);
+//          repaint();
+      }
+    }
+
+    // do not neet to do anything with this method from KeyListener
+    // but must have since this class implements KeyListiner 
+    @Override
+    public void keyReleased(KeyEvent e) { }
+    
+    // do not neet to do anything with this method from KeyListener
+    // but must have since this class implements KeyListiner 
+    @Override
+    public void keyTyped(KeyEvent e) { }
+    
+    public void actionPerformed(ActionEvent e){
+      for(Circle shape : daShapes){
+        shape.moveLoc(shape.getMoveX(), shape.getMoveY());
+        if(shape.getX() <= 0 + shape.getRadius() ||
+           shape.getX() >= FRAME_WIDTH - shape.getRadius())
+          shape.setMoveX(-shape.getMoveX());
+        if(shape.getY() <= 0 + shape.getRadius() ||
+           shape.getY() >= FRAME_HEIGHT - shape.getRadius())
+          shape.setMoveY(-shape.getMoveY());
+        int i = daShapes.indexOf(shape);
+        for(Circle other : daShapes.subList(i, daShapes.size())){
+          double dist = Math.sqrt(Math.pow(shape.getX() - other.getX(), 2) +
+                                  Math.pow(shape.getY() - other.getY(), 2));
+          if(dist <= shape.getRadius() + other.getRadius()){
+            shape.setMoveX(-shape.getMoveX());
+            shape.setMoveY(-shape.getMoveY());
+            other.setMoveX(-other.getMoveX());
+            other.setMoveY(-other.getMoveY());
+            Color temp = shape.getFillColor();
+            shape.setFillColor(other.getFillColor());
+            other.setFillColor(temp);
+          }
+        }
+      }
+      repaint();
+    }
+
+    // test client
+    public static void main(String[] args) {
+      new ShapeDriver();
+    }
+}
