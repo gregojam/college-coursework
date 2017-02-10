@@ -3,6 +3,7 @@ Work I've done for various college courses.
 
 #### Each folder represents single course:  
   AndroidStudioProjects == IU, CSCI-A290 Android App Dev I  
+  B351 == IU, CSCI-B351 Intro to Artificial Intelligence
   Barbell == IUPUI, CSCI 240000 Computing II  
   C212 == IU, CSCI-C212 Intro to Software Systems  
   C311 == IU, CSCI-C311 Programming Languages  

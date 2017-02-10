@@ -1,0 +1,38 @@
+import random as rn
+
+#values of rock, paper, scissors
+r,p,s = 0,1,2
+#dictionary e.g., rock beats scissors
+ws = {r:s, p:r, s:p}
+
+nogames = int(input("Number of games? "))
+
+totgames = 0
+compwins = 0
+robwins = 0
+ties = 0
+
+gamehistory = []
+
+while totgames < nogames:
+     comp = rn.randrange(0,3,1)
+    #With Robby having access to the other AI's
+    #   choice, he can guarantee a win by simply
+    #   choosing the comp's choice + 1 % 3,
+    #   though this is really just cheating.
+     robby = (comp + 1) % 3
+     gamehistory.append([robby, comp])
+
+     print("Robby: {0}, Comp: {1}".format(robby, comp))
+
+     if ws[comp] == robby:
+        compwins += 1
+     elif ws[robby] == comp:
+        robwins += 1
+     else:
+        ties += 1
+     totgames += 1
+
+v = list(map(lambda x: 100*x/totgames, [compwins, robwins, ties]))
+print("Stats\ncw% = {0}, rob% = {1}, ties% = {2}".format(*v))
+
