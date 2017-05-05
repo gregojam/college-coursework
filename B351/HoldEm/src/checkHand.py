@@ -1,3 +1,57 @@
+twoChart = {
+    (12,12,False):0, (12,11,True):3, (12,10,True):5, (12,9,True):7, (12,8,True):11, (12,7,True):18,
+    (12,6,True):23, (12,5,True):29, (12,4,True):33, (12,3,True):27, (12,2,True):31, (12,1,True):32, (12,0,True):38,
+    (12,11,False):10, (12,10,False):17, (12,9,False):26, (12,8,False):41, (12,7,False):75, (12,6,False):90,
+    (12,5,False):101, (12,4,False):112, (12,3,False):100, (12,2,False):103, (12,1,False):108, (12,0,False):116,
+    
+    (11,11,False):1, (11,10,True):6, (11,9,True):8, (11,8,True):13, (11,7,True):21, (11,6,True):36,
+    (11,5,True):43, (11,4,True):52, (11,3,True):54, (11,2,True):57, (11,1,True):59, (11,0,True):58,
+    (11,10,False):19, (11,9,False):30, (11,8,False):44, (11,7,False):80, (11,6,False):111,
+    (11,5,False):121, (11,4,False):124, (11,3,False):127, (11,2,False):131, (11,1,False):132, (11,0,False):134,
+    
+    (10,10,False):2, (10,9,True):12, (10,8,True):14, (10,7,True):24, (10,6,True):42,
+    (10,5,True):60, (10,4,True):65, (10,3,True):68, (10,2,True):70, (10,1,True):71, (10,0,True):74,
+    (10,9,False):34, (10,8,False):48, (10,7,False):82, (10,6,False):114, (10,5,False):130,
+    (10,4,False):136, (10,3,False):140, (10,2,False):142, (10,1,False):143, (10,0,False):145,
+    
+    (9,9,False):4, (9,8,True):15, (9,7,True):25, (9,6,True):40, (9,5,True):63,
+    (9,4,True):78, (9,3,True):81, (9,2,True):85, (9,1,True):86, (9,0,True):88,
+    (9,8,False):46, (9,7,False):79, (9,6,False):107, (9,5,False):128,
+    (9,4,False):146, (9,3,False):148, (9,2,False):151, (9,1,False):152, (9,0,False):154,
+    
+    (8,8,False):9, (8,7,True):22, (8,6,True):37, (8,5,True):56,
+    (8,4,True):73, (8,3,True):92, (8,2,True):94, (8,1,True):95, (8,0,True):97,
+    (8,7,False):72, (8,6,False):99, (8,5,False):123, (8,4,False):139,
+    (8,3,False):156, (8,2,False):157, (8,1,False):159, (8,0,False):161,
+    
+    (7,7,False):16, (7,6,True):39, (7,5,True):53, (7,4,True):67,
+    (7,3,True):87, (7,2,True):105, (7,1,True):106, (7,0,True):110,
+    (7,6,False):98, (7,5,False):118, (7,4,False):133,
+    (7,3,False):149, (7,2,False):163, (7,1,False):164, (7,0,False):165,
+    
+    (6,6,False):20, (6,5,True):47, (6,4,True):61,
+    (6,3,True):77, (6,2,True):93, (6,1,True):115, (6,0,True):117,
+    (6,5,False):113, (6,4,False):125, (6,3,False):138,
+    (6,2,False):155, (6,1,False):166, (6,0,False):167,
+    
+    (5,5,False):28, (5,4,True):55, (5,3,True):66, (5,2,True):84, (5,1,True):102, (5,0,True):119,
+    (5,4,False):120, (5,3,False):129, (5,2,False):144, (5,1,False):160, (5,0,False):168,
+    
+    (4,4,False):35, (4,3,True):62, (4,2,True):69, (4,1,True):89, (4,0,True):109,
+    (4,3,False):122, (4,2,False):135, (4,1,False):147, (4,0,False):162,
+    
+    (3,3,False):45, (3,2,True):64, (3,1,True):76, (3,0,True):91,
+    (3,2,False):126, (3,1,False):137, (3,0,False):150,
+    
+    (2,2,False):49, (2,1,True):83, (2,0,True):96,
+    (2,1,False):141, (2,0,False):153,
+    
+    (1,1,False):51, (1,0,True):104,
+    (1,0,False):158,
+    
+    (0,0,False):50
+    }
+
 def isRoyalFlush(hand):
     if isStraightFlush(hand):
         return hand[4] % 13 == 12
@@ -128,8 +182,17 @@ def runBetterThan(table, hand, myBest):
     for card in hand + table:
         cards.remove(card)
     
-    beatBy = 0
-    if len(table) == 3:
+    beatBy = 0    
+    if len(table) == 0:
+        a = hand[0]
+        b = hand[1]
+        if a%13 < b%13:
+            tmp = a
+            a = b
+            b = tmp
+        total = 169
+        beatBy = twoChart[(a%13, b%13, a//13 == b//13)]       
+    elif len(table) == 3:
         total = 178365
         for i in range(len(cards)):
             for j in range(i, len(cards)):
@@ -257,7 +320,7 @@ if __name__ == "__main__":
     for i in range(52):
         deck[i] = Card(i%13, i//13)
 
-    hand = [0, 14, 43, 3, 15]
+    hand = [10, 9, 24, 20, 36]
 
     convertedHand = []
     rHand = []
@@ -267,14 +330,14 @@ if __name__ == "__main__":
     
     best = bestHand(hand)
     
-    print("hand = " + str(hand))
-    print("convertedHand = " + str(convertedHand))
-    print("rHand = " + str(rHand))
-    print("rDict = " + str(rankDict(hand)))
-    print("bestOfAKind = " + str(bestOfAKind(hand)))
-    print("bestStraight = " + str(bestStraight(hand)))
-    print("bestFlush = " + str(bestFlush(hand)))
-    print("bestHand = " + str(best))
+    print("hand = ", hand)
+    print("convertedHand = ", convertedHand)
+    print("rHand = ", rHand)
+    print("rDict = ", rankDict(hand))
+    print("bestOfAKind = ", bestOfAKind(hand))
+    print("bestStraight = ", bestStraight(hand))
+    print("bestFlush = ", bestFlush(hand))
+    print("bestHand = ", best)
     
     print()
     print(isRoyalFlush(best))
@@ -289,4 +352,17 @@ if __name__ == "__main__":
     
     print()
     print(betterThan(bestHand([26, 39, 14, 15, 16]), bestHand([0, 13, 1, 2, 3])))
+    
+    
+    # Check twoChart is valid
+    assert len(set(twoChart.values()))
+    vals = twoChart.values()
+    for x in range(169):
+        assert x in vals
+    ks = twoChart.keys()
+    for x in range(12, -1, -1):
+        assert (x, x, False) in ks
+        for y in range(x-1, 0, -1):
+            assert (x, y, True) in ks
+            assert (x, y, False) in ks
     
