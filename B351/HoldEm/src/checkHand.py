@@ -130,7 +130,7 @@ def runBetterThan(table, hand, myBest):
     
     beatBy = 0
     if len(table) == 3:
-        totalCount = 148995
+        total = 178365
         for i in range(len(cards)):
             for j in range(i, len(cards)):
                 for k in range(j, len(cards)):
@@ -140,7 +140,7 @@ def runBetterThan(table, hand, myBest):
                             if(betterThan(thisBest, myBest)):
                                 beatBy += 1
     elif len(table) == 4:
-        totalCount = 14190
+        total = 15180
         for i in range(len(cards)):
             for j in range(i, len(cards)):
                 for k in range(j, len(cards)):
@@ -149,15 +149,15 @@ def runBetterThan(table, hand, myBest):
                         if(betterThan(thisBest, myBest)):
                             beatBy += 1
     else:
-        totalCount = 990
+        total = 990
         for i in range(len(cards)):
             for j in range(i, len(cards)):
                 if len({i, j}) == 2:
                     thisBest = bestHand(table + [i, j])
                     if(betterThan(thisBest, myBest)):
                         beatBy += 1
-                        
-    return (beatBy, totalCount)
+    
+    return 1 - beatBy / total
     
 
 def rankDict(hand):
@@ -286,4 +286,7 @@ if __name__ == "__main__":
     print(is3OfAKind(best))
     print(is2Pair(best))
     print(isPair(best))
+    
+    print()
+    print(betterThan(bestHand([26, 39, 14, 15, 16]), bestHand([0, 13, 1, 2, 3])))
     

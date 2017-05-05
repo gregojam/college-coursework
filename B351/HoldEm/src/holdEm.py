@@ -1,10 +1,10 @@
-import checkHand
+from checkHand import bestHand, runBetterThan
+from math import floor
 import random
-
-DECK = []
 
 
 ### Our Deck ###
+DECK = []
 def shuffle():
     global DECK
     DECK = [x for x in range(52)]
@@ -13,15 +13,25 @@ def shuffle():
 ### Deal a given number of cards ###
 def deal(num):
     turned = []
-    for i in range(num):
+    for _ in range(num):
         turned.append(DECK.pop())
     return turned
 
-
+### Gets whether game is still going ###
 def getGameStatus():
     return False
 
+### Gets how many chips I have
+def getChips():
+    return 200
 
+def bellRand(high):
+    oddAdjust = (high+1) % 2
+    x = random.randrange((high+1) // 2)
+    y = random.randrange((high+1) // 2 + oddAdjust)
+    return x + y
+
+#############################################################################
 for i in range(13):
     rank = i +2
     if rank == 11:
@@ -36,13 +46,19 @@ for i in range(13):
     print("{}, {}, {}, {} = {}".format(i, i+13, i+26, i+39, rank))
 print()
 print()
+#############################################################################
 
+
+chips = None
 gameOn = True
 while(gameOn):
+    # Get our danged ol' chips
+    if chips == None:
+        chips = getChips()
+        
     # Shuffle Deck
     shuffle()
-    
-    
+      
     # Deal our hand
     hand = deal(2)    
     print("In hand : " + str(hand))
@@ -50,43 +66,75 @@ while(gameOn):
     
     # Deal the flop
     table = deal(3)
-    myBest = checkHand.bestHand(hand + table)
+    myBest = bestHand(hand + table)
     print("On Table : " + str(table))
-    print("Best: " + str(myBest))
+    print("Best: ", myBest)
+    
+    # Find probability of taking or splitting pot
+    winProb = runBetterThan(table, hand, myBest)
+    print(winProb)
+    
+    maxBet = floor(winProb * chips)
+    print("Max = ", maxBet)
+    
+    bet = bellRand(maxBet)
+    chips -= bet
+    print("Bet = " + str(bet))
+    
     print()
     
     # Deal the Turn
     table.extend(deal(1))
-    myBest = checkHand.bestHand(hand + table)
+    myBest = bestHand(hand + table)
     print("On Table : " + str(table))
     print("Best: " + str(myBest))
+    
+    # Find probability of taking or splitting pot
+    winProb = runBetterThan(table, hand, myBest)
+    print(winProb)
+    
+    maxBet = floor(winProb * chips) - bet
+    print("Max = ", maxBet)
+    
+    if maxBet > 0:
+        bet = bellRand(maxBet)
+    else:
+        bet = 0
+    chips -= bet
+    print("Bet = ", bet)
+    
     print()
     
     # Deal the River
     table.extend(deal(1))
-    myBest = checkHand.bestHand(hand + table)
+    myBest = bestHand(hand + table)
     print("On Table : " + str(table))
-    print("Best: " + str(myBest))
+    print("Best: ", myBest)
+    
+    # Find probability of taking or splitting pot
+    winProb = runBetterThan(table, hand, myBest)
+    print(winProb)
+    
+    maxBet = floor(winProb * chips) - bet
+    print("Max = ", maxBet)
+    
+    if maxBet > 0:
+        bet = bellRand(maxBet)
+    else:
+        bet = 0
+    chips -= bet
+    print("Bet = ", bet)
+    
     
 
-    
-
-    
-    hand = [8, 11]
-    table = [12, 9, 10, 15]
-    beatBy = 0
-    myBest = checkHand.bestHand(hand + table)
-    
-    (beatBy, totalCount) = checkHand.runBetterThan(table, hand, myBest)
-
-                            
-    print(beatBy)
-    print(totalCount)
-    print(beatBy / totalCount)
-    
-    maxBet = 1 - beatBy / totalCount
-    print(maxBet)
-
+# ###########################################################################
+#     hand = [8, 11]
+#     table = [12, 9, 10, 15]
+#     beatBy = 0
+#     myBest = bestHand(hand + table)
+#     
+#     winProb = runBetterThan(table, hand, myBest)
+#     print(winProb)
+# ###########################################################################
     
     gameOn = getGameStatus()
-
