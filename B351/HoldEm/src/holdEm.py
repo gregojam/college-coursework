@@ -69,28 +69,6 @@ def getWhatsHappened():
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#
 
 
-
-#############################################################################
-"""
-Delete me!
-"""
-for i in range(13):
-    rank = i +2
-    if rank == 11:
-        rank = "J"
-    elif rank == 12:
-        rank = "Q"
-    elif rank == 13:
-        rank = "K"
-    elif rank == 14:
-        rank = "A"
-        
-    print(i, i+13, i+26, i+39, '=', rank)
-print()
-print()
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#
-
-
 ### Returns a random integer with a bell-curve distribution.
 ###
 ### Note: returned value is in the closed interval [low, high], if both are
@@ -132,7 +110,7 @@ def takeTurn(whatsHappened, table, hand, myBest, chips):
     if canBet:
         # Place bet randomly, up to my maxWilling
         if maxWilling > callVal:
-            bet = bellRand(maxWilling - callVal)
+            bet = bellRand(1, maxWilling - callVal)
     
     # Get the maximum bet allowed, and ensure I don't exceed it
     maxAllowed = getMaxBet()
@@ -179,22 +157,39 @@ while(gameOn):
     print("whatIDid = ", whatIDid)
     whatsHappened.append(whatIDid)
     
+    # Count what was bet
+    bet = 0
+    for happening in whatsHappened:
+        if happening[1] == 'raise':
+            bet += happening[2]
+            
+    # Bookkeeping
+    if whatIDid[1] == 'fold':
+        folded = True
+    else:
+        chips -= bet
+    
     # Simulate opponents' second turns
     whatsHappened.extend(getWhatsHappened())
     print("whatsHappened = ", whatsHappened)
     
     # Take my second turn
-    if whatIDid[1] == 'raise':
-        chips -= whatIDid[2]
-    elif whatIDid[1] == 'fold':
-        folded = True
+
     if not folded:
         whatIDid = takeTurn(whatsHappened, table, hand, None, chips//2)
         print("whatIDid = ", whatIDid)
-        if whatIDid[1] == 'raise':
-            chips -= whatIDid[2]
-        elif whatIDid[1] == 'fold':
+        
+        # Count what was bet
+        bet = 0
+        for happening in whatsHappened:
+            if happening[1] == 'raise':
+                bet += happening[2]
+                
+        # Bookkeeping
+        if whatIDid[1] == 'fold':
             folded = True
+        else:
+            chips -= bet
             
     print()
     
@@ -208,28 +203,44 @@ while(gameOn):
     whatsHappened = getWhatsHappened()
     print("whatsHappened = ", whatsHappened)
     
-    # Take my first turn
-    whatIDid = takeTurn(whatsHappened,table, hand, myBest, chips)
-    print("whatIDid = ", whatIDid)
-    whatsHappened.append(whatIDid)
+    if not folded:
+        # Take my first turn
+        whatIDid = takeTurn(whatsHappened,table, hand, myBest, chips)
+        print("whatIDid = ", whatIDid)
+        whatsHappened.append(whatIDid)
+    
+    # Count what was bet
+    bet = 0
+    for happening in whatsHappened:
+        if happening[1] == 'raise':
+            bet += happening[2]
+            
+    # Bookkeeping
+    if whatIDid[1] == 'fold':
+        folded = True
+    else:
+        chips -= bet
     
     # Simulate opponents' second turns
     whatsHappened.extend(getWhatsHappened())
     print("whatsHappened = ", whatsHappened)
     
     # Take my second turn
-    if whatIDid[1] == 'raise':
-        chips -= whatIDid[2]
-    elif whatIDid[1] == 'fold':
-        folded = True
     if not folded:
         whatIDid = takeTurn(whatsHappened, table, hand, myBest, chips)
         print("whatIDid = ", whatIDid)
-        if whatIDid[1] == 'raise':
-            chips -= whatIDid[2]
-        elif whatIDid[1] == 'fold':
+        
+        # Count what was bet
+        bet = 0
+        for happening in whatsHappened:
+            if happening[1] == 'raise':
+                bet += happening[2]
+                
+        # Bookkeeping
+        if whatIDid[1] == 'fold':
             folded = True
-
+        else:
+            chips -= bet
     
     print()
     
@@ -248,24 +259,39 @@ while(gameOn):
         whatIDid = takeTurn(whatsHappened,table, hand, myBest, chips)
         print("whatIDid = ", whatIDid)
         whatsHappened.append(whatIDid)
-        
+    
+    # Count what was bet
+    bet = 0
+    for happening in whatsHappened:
+        if happening[1] == 'raise':
+            bet += happening[2]
+            
+    # Bookkeeping
+    if whatIDid[1] == 'fold':
+        folded = True
+    else:
+        chips -= bet
+    
     # Simulate opponents' second turns
     whatsHappened.extend(getWhatsHappened())
     print("whatsHappened = ", whatsHappened)
     
-    if not folded:    
-        # Take my second turn
-        if whatIDid[1] == 'raise':
-            chips -= whatIDid[2]
-        elif whatIDid[1] == 'fold':
+    # Take my second turn
+    if not folded:
+        whatIDid = takeTurn(whatsHappened, table, hand, myBest, chips)
+        print("whatIDid = ", whatIDid)
+        
+        # Count what was bet
+        bet = 0
+        for happening in whatsHappened:
+            if happening[1] == 'raise':
+                bet += happening[2]
+                
+        # Bookkeeping
+        if whatIDid[1] == 'fold':
             folded = True
-        if not folded:
-            whatIDid = takeTurn(whatsHappened, table, hand, myBest, chips)
-            print("whatIDid = ", whatIDid)
-            if whatIDid[1] == 'raise':
-                chips -= whatIDid[2]
-            elif whatIDid[1] == 'fold':
-                folded = True
+        else:
+            chips -= bet
     
     print()
     
@@ -285,21 +311,38 @@ while(gameOn):
         print("whatIDid = ", whatIDid)
         whatsHappened.append(whatIDid)
     
+    # Count what was bet
+    bet = 0
+    for happening in whatsHappened:
+        if happening[1] == 'raise':
+            bet += happening[2]
+            
+    # Bookkeeping
+    if whatIDid[1] == 'fold':
+        folded = True
+    else:
+        chips -= bet
+    
     # Simulate opponents' second turns
     whatsHappened.extend(getWhatsHappened())
     print("whatsHappened = ", whatsHappened)
     
-    if not folded:    
-        # Take my second turn
-        if whatIDid[1] == 'raise':
-            chips -= whatIDid[2]
-        elif whatIDid[1] == 'fold':
+    # Take my second turn
+    if not folded:
+        whatIDid = takeTurn(whatsHappened, table, hand, myBest, chips)
+        print("whatIDid = ", whatIDid)
+        
+        # Count what was bet
+        bet = 0
+        for happening in whatsHappened:
+            if happening[1] == 'raise':
+                bet += happening[2]
+                
+        # Bookkeeping
+        if whatIDid[1] == 'fold':
             folded = True
-        if not folded:
-            whatIDid = takeTurn(whatsHappened, table, hand, myBest, chips)
-            print("whatIDid = ", whatIDid)
-            if whatIDid[1] == 'raise':
-                chips -= whatIDid[2]
+        else:
+            chips -= bet
     
     # Update game status
     gameOn = getGameStatus()
