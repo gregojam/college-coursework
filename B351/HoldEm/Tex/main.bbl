@@ -1,0 +1,153 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.7 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\sortlist[entry]{nyt/global/}
+  \entry{Reference3}{article}{}
+    \verb{url}
+    \verb http://sscaitournament.com/
+    \endverb
+  \endentry
+
+  \entry{Reference5}{article}{}
+    \verb{url}
+    \verb https://www.pokernews.com/strategy/on-starting-hand-charts-ranking-the-169-hands-in-hold-em-21325.htm
+    \endverb
+  \endentry
+
+  \entry{Reference4}{article}{}
+    \name{author}{1}{}{%
+      {{hash=EN}{%
+         family={Ensmenger},
+         family_i={E\bibinitperiod},
+         given={Nathan},
+         given_i={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{EN1}
+    \strng{fullhash}{EN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{abstract}{%
+    Since the mid 1960s, researchers in computer science have famously referred
+  to chess as the ‘drosophila’ of artificial intelligence (AI). What they
+  seem to mean by this is that chess, like the common fruit fly, is an
+  accessible, familiar, and relatively simple experimental technology that
+  nonetheless can be used productively to produce valid knowledge about other,
+  more complex systems. But for historians of science and technology, the
+  analogy between chess and drosophila assumes a larger significance. As Robert
+  Kohler has ably described, the decision to adopt drosophila as the organism
+  of choice for genetics research had far-reaching implications for the
+  development of 20th century biology. In a similar manner, the decision to
+  focus on chess as the measure of both human and computer intelligence had
+  important and unintended consequences for AI research. This paper explores
+  the emergence of chess as an experimental technology, its significance in the
+  developing research practices of the AI community, and the unique ways in
+  which the decision to focus on chess shaped the program of AI research in the
+  decade of the 1970s. More broadly, it attempts to open up the virtual black
+  box of computer software – and of computer games in particular – to the
+  scrutiny of historical and sociological analysis.%
+    }
+    \field{title}{Is Chess the drosophila of Artificial Intelligence? A Social
+  Hostory of an Algorithm}
+    \verb{url}
+    \verb http://journals.sagepub.com/doi/full/10.1177/0306312711424596
+    \endverb
+    \field{journaltitle}{Social Studies of Science}
+    \field{month}{01}
+  \endentry
+
+  \entry{Reference2}{article}{}
+    \name{author}{1}{}{%
+      {{hash=LM}{%
+         family={Lai},
+         family_i={L\bibinitperiod},
+         given={Matthew},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LM1}
+    \strng{fullhash}{LM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    This report presents Giraffe, a chess engine that uses self-play to
+  discover all its domain-specific knowledge, with minimal hand-crafted
+  knowledge given by the programmer. Unlike previous attempts using machine
+  learning only to perform parameter-tuning on hand-crafted evaluation
+  functions, Giraffe's learning system also performs automatic feature
+  extraction and pattern recognition. The trained evaluation function performs
+  comparably to the evaluation functions of state-of-the-art chess engines -
+  all of which containing thousands of lines of carefully hand-crafted pattern
+  recognizers, tuned over many years by both computer chess experts and human
+  chess masters. Giraffe is the most successful attempt thus far at using
+  end-to-end machine learning to play chess.%
+    }
+    \field{title}{Giraffe: Using Deep Reinforcement Learning to Play Chess}
+    \field{journaltitle}{Review of Scientific Instruments}
+    \field{month}{09}
+  \endentry
+
+  \entry{Reference1}{article}{}
+    \name{author}{1}{}{%
+      {{hash=SDea}{%
+         family={Silver},
+         family_i={S\bibinitperiod},
+         given={David; et\bibnamedelima al.},
+         given_i={D\bibinitperiod\bibinitdelim e\bibinitperiod\bibinitdelim
+  a\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SDea1}
+    \strng{fullhash}{SDea1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    The game of Go has long been viewed as the most challenging of classic
+  games for artificial intelligence due to its enormous search space and the
+  difficulty of evaluating board positions and moves. We introduce a new
+  approach to computer Go that uses value networks to evaluate board positions
+  and policy networks to select moves. These deep neural networks are trained
+  by a novel combination of supervised learning from human expert games, and
+  reinforcement learning from games of self-play. Without any lookahead search,
+  the neural networks play Go at the level of state-of-the-art Monte-Carlo tree
+  search programs that simulate thousands of random games of self-play. We also
+  introduce a new search algorithm that combines Monte-Carlo simulation with
+  value and policy networks. Using this search algorithm, our program AlphaGo
+  achieved a 99.8\% winning rate against other Go programs, and defeated the
+  European Go champion by 5 games to 0. This is the first time that a computer
+  program has defeated a human professional player in the full-sized game of
+  Go, a feat previously thought to be at least a decade away.%
+    }
+    \field{title}{Mastering the Game of Go wih Deep Neural Networks and Tree
+  Search}
+    \verb{url}
+    \verb https://gogameguru.com/i/2016/03/deepmind-mastering-go.pdf
+    \endverb
+    \field{journaltitle}{Nature}
+    \field{month}{01}
+    \field{year}{2016}
+  \endentry
+\endsortlist
+\endinput
