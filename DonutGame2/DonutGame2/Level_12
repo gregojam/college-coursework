@@ -1,0 +1,73 @@
+8
+5 4 16 8
+5 5 5 2
+16 4 22 11
+16 5 7 11
+27 4 27 5
+15 22 15 24
+6 19 15 11
+23 19 15 11
+1
+7 11 19 14 23 20
+##################################
+#                                #    0
+#  xxxxxxx    xxxxxxx    xxxxxxx #    1
+#  xk k kx    xkk kkx    xk   kx #    2
+#  xxxnxxx    xxxnxxx    xxxnxxx #    3
+#  xxxpxxx    xxxpxxx    xxxpxxx #    4
+#  xxxpxxx    xxxpxxx    xxxpxxx #    5
+#  xxxnxxx    xxxnxxx    xxx xxx #    6
+#                                #    7
+#                                #    8
+#                                #    9
+#      xxx            xxx        #    10
+#      xsx            x x        #    11
+#      xxx            xxx        #    12
+#                                #    13
+#                  xxx           #    14
+#                  xkx           #    15
+#                  xxx           #    16
+#             xxnxx              #    17
+#     xxx     x   x    xxx       #    18
+#     xpx     xxnxx    xpx       #    19
+#     xkx     x   x    xxx       #    20
+#     x@x     xxnxx    x&x       #    21
+#     xxx     x p x    xxx       #    22
+#             xxnxx              #    23
+#             x   x              #    24
+#             x o x              #    25
+#             xxxxx              #    26
+#                                #    27
+#                                #    28
+#                                #    29
+##################################
+
+
+@ == player
+& == player2
+x == wall
+o == donut
+n == door
+k == key
+p == portal
+s == switch
+w == sliding wall
+
+** FORMAT **
+
+First line is a single number N, where N is equal to the number of portal pairs in the level.
+
+The next N lines contain the coordinates of the two portals in each portal pair as "xA yA xB yB",
+where portal A and portal B are connected.
+
+The next line is a single  number M, where M is equal to the number of switches in the level.
+
+The next M lines contains the coordinates of a switch first, then the coordinates of every sliding wall
+that switch controls. All coordinates are given as "x y", and each coordinate is separated by a single
+whitespace (e.g. "xS yS x1 y1 x2 y2 x3 y3").
+
+The next line is the border of the level, it exists simply to help provide a visual border to the level.
+
+The next 30 lines should be strings whose characters in index range [1, 33] represent the level itself.
+
+The last line is another visual border.

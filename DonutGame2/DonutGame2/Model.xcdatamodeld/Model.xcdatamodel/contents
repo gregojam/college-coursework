@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="User" representedClassName=".UserModel" syncable="YES">
+        <attribute name="levelsComplete" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="playerColors" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="soundsRecorded" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="88"/>
+    </elements>
+</model>
